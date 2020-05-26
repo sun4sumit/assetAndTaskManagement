@@ -1,0 +1,119 @@
+{{eloggedin}}
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+.table2{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+.table{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+h1{
+  color: white;
+}
+.green{
+  color: lightgreen;
+  text-decoration: underline;
+  text-underline-position: alphabetic;
+  text-decoration-style: double;
+  font-display: auto;
+}
+.red{
+  color: orange;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+.arlink{color:white;
+position:absolute;top:60px;left:800px;font-size: 20px;text-decoration: underline;
+text-decoration-color: lightgreen;text-decoration-style: double;cursor: pointer;
+ }
+ .tlink{color:white;cursor: pointer;
+   position:absolute;top:60px;
+   left:1100px;text-decoration:underline;font-size: 20px;
+   text-decoration-color: lightgreen;text-decoration-style: double
+ }
+a:hover{color: lightgreen;}
+
+</style>
+<script>
+
+$(document).ready(function(){
+  $("p").text(function(){
+    // $(".td:eq(approved)",this).addClass("color")
+  var str=$(this).text()
+  // console.log(str)
+      if((str.indexOf("approved"))!=-1){
+       $(this).addClass("green")}
+      else{
+        $(this).addClass("red")}
+  })
+$('.table2').hide()
+$('.tlink').click(function(){
+$(".table").hide();
+    $('.table2').show();
+})
+$('.arlink').click(function(){
+$('.table').show();
+$(".table2").hide();
+})
+
+})
+</script>
+<body>
+  {{#if msg}}
+<div class="alert alert-success alert-dismissible">
+  <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+  {{msg}}</div>{{/if}}
+
+<a class="tlink">YourTranserRequests</a>
+<a class="arlink">YourAssetRequests</a>
+<body>
+<table class='table' border='1'>
+  <tr><th>Req_id:</th><th>Emp_id:</th><th>Asset_id:</th><th>Assetname:</th><th>manager_id:</th><th>Remark:</th><th>AprrovedDate:</th></tr>
+{{#each data1}}
+ <tr>
+      <td>{{this.request_id}}</td>
+      <td>{{this.emp_id}}</td>
+      <td>{{this.asset_id}}</td>
+      <td>{{this.assetname}}</td>
+      <td>{{this.manager_id}}</td>
+      <td><p>{{this.remark}}<p></td>
+      <td>{{this.reqdate}}</td>
+  </tr>
+  {{/each}}
+
+ </table>
+ <table class='table table2' border='1'>
+   <tr><th>Req_id:</th><th>Emp_id:</th><th>Asset_id:</th><th>Assetname:</th><th>manager_id:</th><th>TransferTo:-</th><th>Remark:</th><th>AprrovedDate:</th></tr>
+{{#each data2}}
+  <tr>
+    <td>{{this.request_id}}</td>
+    <td>{{this.emp_id}}</td>
+    <td>{{this.asset_id}}</td>
+    <td>{{this.assetname}}</td>
+    <td>{{this.manager_id}}</td>
+    <td>{{this.transferto}}</td>
+    <td><p>{{this.remark}}<p></td>
+    <td>{{this.reqdate}}</td>
+    </tr>
+{{/each}}
+</table>
+</body>

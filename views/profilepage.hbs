@@ -1,0 +1,150 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: relative;
+  top: -10px;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.7); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 70%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+.col-md-4{text-decoration: underline;text-transform: uppercase;font-size: 20px;border: none;}
+.col-md-8{text-transform: uppercase;font-size: 20px;color: lightblue;border: none;}
+.green{background-color:green;border: 3px solid;text-align: center;}
+.editlink {color:white;cursor: pointer;
+text-decoration: underline;font-size: 20px;
+position:absolute;top:60px;left:700px;text-decoration-color: lightgreen;text-decoration-style: double;
+ }
+
+
+a:hover{color: lightgreen;}
+</style>
+<script>
+$(document).ready(function(){
+$("p").text(function(){
+  var str=$(this).text()
+  if(str==1){
+  $(this).text("Active")
+   $(this).addClass("green")
+  }
+})
+})
+</script>
+
+</head>
+<body>
+{{#if mloggedin}}{{mloggedin}}{{/if}}{{#if eloggedin}}{{eloggedin}}{{/if}}{{#if sloggedin}}{{sloggedin}}{{/if}}
+<a href="/upbyemp?emplogid={{data.emailid}}" class="editlink">EditProfile</a>
+
+{{#if msg}}
+<div class="alert alert-success alert-dismissible">
+<a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+{{msg}}</div>{{/if}}
+<!-- <div class="container"> -->
+<div class="content">
+  <h1 style="position:relative;top:-20px;color: hotpink;">About</h1>
+      <div class="row">
+    <div class="col-md-4">
+<strong>Name :</strong>
+  </div>
+  <div class="col-md-8" >
+<strong>{{data.name}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>lastname :</strong>
+</div>
+<div class="col-md-8">
+<strong>{{data.lastname}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Mobileno:</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:blue">{{data.mobileno}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Emailid:</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:blue">{{data.emailid}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>employee_Id :</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:lightgreen">{{data.emp_id}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Designation :</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:orange">{{data.designation}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>DateOfJoining :</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:grey">{{data.dateofjoining}}</strong>
+</div></div>
+
+{{#if data.manager_id}}
+<div class="row">
+<div class="col-md-4">
+<strong>Manager_id :</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:lightgreen">{{data.manager_id}}</strong>
+</div></div>
+{{/if}}
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Status :</strong>
+</div>
+<div class="col-md-3">
+<strong><p>{{data.status}}</p></strong>
+</div>
+<div class="col-md-5">
+<strong><p></p></strong>
+</div></div>
+
+     </div>
+     <!-- </div> -->
+</body>
+</html>

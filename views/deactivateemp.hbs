@@ -1,0 +1,95 @@
+{{login}}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+  width: 600px;
+}
+</style>
+<script>
+
+/*$(document).ready(function(){
+
+  $('#sid').blur(function(){
+    var si=$('#sid').val();
+  //console.log(pn);
+    var mydata="sid="+si;
+//console.log(mydata);
+    $.ajax({
+      url:'checksi',
+      data:mydata,
+      type:'get',
+        success:function(response){
+
+          if(response.msg.indexOf('already exist')!=-1)
+       {
+          $('#sid').val('');
+          $('#sid').focus();
+        }
+          $('#msg').html(response.msg);
+
+        }
+
+
+
+    })//ajax code end here
+  })//blur fn end
+})//ready end*/
+</script>
+</head>
+<body>
+  {{#if msg}}
+<div class="alert alert-success alert-dismissible">
+  <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+  {{msg}}</div>{{/if}}
+
+<div class="container">
+
+  <div class="content">
+    <h2>Enter employee_id which is to be deactivated</h2>
+    <form action="/deactivate" method="Post">
+
+       <div class="form-group">
+        <div class="row">
+        <div class="col-md-4 col-md-offset-0">
+        <label for="text">Enter employee id</label>
+      <input type="text" class="form-control" id="empidid" placeholder=" enter employee id" name="empid" required>
+      </div></div></div>
+
+<button type="submit" class="btn btn-primary" onClick="return confirm('do you really want to deactivate?')">Deactivate</button>
+
+
+
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

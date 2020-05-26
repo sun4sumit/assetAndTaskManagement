@@ -1,0 +1,48 @@
+{{eloggedin}}{{mloggedin}}
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+.table{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+h1{
+  color: white;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+</style>
+<body>
+
+    {{#if msg}}
+  <div class="alert alert-success alert-dismissible">
+    <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+    {{msg}}</div>{{/if}}
+<table class='table' border='1'>
+  <tr><th>Aid</th><th>Asset_id</th><th>Asset Name</th></tr>
+{{#each data}}
+ <tr>
+      <td>{{this.aid}}</td>
+      <td>{{this.asset_id}}</td>
+      <td>{{this.assetname}}</td>
+ </tr>
+
+{{/each}}
+
+ </table>
+<!-- </div> -->
+</body>

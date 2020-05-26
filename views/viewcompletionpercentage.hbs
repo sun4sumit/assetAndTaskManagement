@@ -1,0 +1,110 @@
+{{mloggedin}}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: relative;
+  top: -10px;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.7); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 70%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+.col-md-4{text-decoration: underline;text-transform: uppercase;font-size: 20px;border: none;}
+.col-md-8{text-transform: uppercase;font-size: 20px;border: none;}
+
+.backlink {color:white;cursor: pointer;
+text-decoration: underline;font-size: 20px;
+position:absolute;top:60px;left:700px;text-decoration-color: lightgreen;text-decoration-style: double;
+ }
+
+a:hover{color: lightgreen;}
+</style>
+<script>
+</script>
+
+</head>
+<body>
+
+<a href="/backtocompstatus?emplogid={{data.emailid}}" class="backlink">ViewAnotherEmployee's_completionPercentage</a>
+
+{{#if msg}}
+<div class="alert alert-success alert-dismissible">
+<a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+{{msg}}</div>{{/if}}
+<!-- <div class="container"> -->
+<div class="content">
+  <h1 style="position:relative;top:-20px;color: hotpink;">Previous task completion status</h1>
+      <div class="row">
+    <div class="col-md-4">
+<strong>Name :</strong>
+  </div>
+  <div class="col-md-8" >
+<strong style="color:lightblue">{{name}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Employee_id :</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:lightblue">{{empid}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Totaltask:</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:blue">{{totaltask}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Completedtask:</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:lightgreen">{{completedtask}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Uncompletedtask :</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:red">{{uncompletedtask}}</strong>
+</div></div>
+</br>
+<div class="row">
+<div class="col-md-4">
+<strong>Percentage :</strong>
+</div>
+<div class="col-md-8">
+<strong style="color:orange">{{percentage}}%</strong>
+</div></div>
+     </div>
+     <!-- </div> -->
+</body>
+</html>

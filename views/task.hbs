@@ -1,0 +1,189 @@
+{{mloggedin}}
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+.table2{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+.table{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  /* position:absolute;top: 30px; */
+  cursor: auto;
+  /* width: 600px; */
+}
+
+h1{
+  color: white;
+}
+.tlink{color:white;cursor: pointer;
+  position:absolute;top:60px;
+  left:250px;text-decoration: underline;font-size: 20px;
+  text-decoration-color: lightgreen;text-decoration-style: double
+}
+.assignlink {color:white;cursor: pointer;
+text-decoration: underline;font-size: 20px;
+position:absolute;top:60px;left:600px;text-decoration-color: lightgreen;text-decoration-style: double;
+ }
+ .complink {color:white;cursor: pointer;
+ text-decoration: underline;font-size: 20px;
+ position:absolute;top:60px;left:800px;text-decoration-color: lightgreen;text-decoration-style: double;
+  }
+a:hover{color: lightgreen;}
+</style>
+</style>
+<script>
+$(document).ready(function(){
+
+  $('.content').hide()
+$('.table2').hide()
+$("p").text(function(){
+  var str=$(this).text()
+  if(str==0){
+  $(this).text("pending")
+   $(this).css({"color":"orange"})
+  }
+  else if(str==1){
+  $(this).text("in-progress")
+   $(this).css({"color":"blue"})
+  }
+  else if(str==2){
+  $(this).text("completed")
+   $(this).css({"color":"green"})
+  }
+  else if(str==3){
+  $(this).text("unable-to-do")
+   $(this).css({"color":"blue"})
+  }
+})
+$('.tlink').click(function(){
+$(".table").show();
+    $('.table2').hide();
+    $('.content').hide()
+})
+$('.assignlink').click(function(){
+$('.content').show();
+$(".table2").hide();
+$('.table').hide()
+})
+$('.complink').click(function(){
+   $('.table').hide()
+$('.table2').show();
+$(".content").hide();
+
+})
+var str=$(".alert").text();
+console.log((str.indexOf("assigned"))!=-1)
+if((str.indexOf("assigned"))!=-1){
+  $(".table").hide();
+  $('.content').show();
+  $(".table2").hide();
+}
+else if((str.indexOf("completion"))!=-1){
+  $(".table").hide();
+  $('.content').hide();
+  $(".table2").show();
+}
+ })
+</script>
+  {{#if msg}}
+<div class="alert alert-success alert-dismissible">
+  <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+  {{msg}}</div>{{/if}}
+
+  <body>
+  <a class="tlink">ViewEmployeeTaskStatus</a>
+<a class="assignlink">AssignTask</a>
+<a class="complink">PreviousTaskStatus</a>
+<table class='table' border='1'>
+   <tr><th>Emp_id:</th><th>TaskName:</th><th>Discription:</th><th>Manager_id:</th><th>Status:</th><th>UpdationDate:</th><th>DueDate:</th><th>close&ratings</th></tr>
+{{#each data2}}
+  <tr>
+    <td>{{this.emp_id}}</td>
+    <td>{{this.taskname}}</td>
+    <td>{{this.discription}}</td>
+    <td>{{this.manager_id}}</td>
+    <td><p>{{this.status}}</p></td>
+    <td>{{this.assign_date}}</td>
+    <td>{{this.deadline}}</td>
+<td><a href="/closebym?empid={{this.emp_id}}&taskname={{this.taskname}}&mid={{this.manager_id}}" onClick="return confirm('do you really want to Close?')">Close&GiveRatings</a></td>
+    </tr>
+{{/each}}
+</table>
+<!-- <div class="container"> -->
+<div class="content">
+    <h2>Select employee and enter the respective information:</h2>
+    <form action="/assigntask" method="Post">
+  <div class="form-group">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-0">
+  <input type="hidden" class="form-control" id="" value="{{mloggedin}}" name="logid" required>
+  <label class="txt" for="text">Choose employee from your team to assign task:</label>
+  <select class="form-control" placeholder="dropdown"  id="empidid" name="empid" required>
+           <option disabled>select asset</option>
+           {{#each data1}}
+           <option value="{{this.emp_id}}">{{this.name}}({{this.emp_id}})</option>
+           {{/each}}
+
+  </select></div></div></div>
+  <div class="form-group">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-0">
+  <label for="text">TaskName:</label>
+  <input type="text" class="form-control" id="tid" placeholder="enter taskname" name="taskname"required>
+  </div></div></div>
+  <div class="form-group">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-0">
+      <label for="text">Discription:</label>
+   <textarea class="form-control" name="disc" rows="2" cols="50" required>Discription</textarea>
+   </div></div></div>
+   <div class="form-group">
+     <div class="row">
+   <div class="col-md-4 col-md-offset-0">
+     <label for="text">DueDate:</label>
+   <input type="date"  class="form-control" id="dat" placeholder=" enter date" name="duedate" required>
+   </div></div></div>
+<button type="submit" class="btn btn-primary">Assign</button>
+     </form>
+     <!-- </div> -->
+     </div>
+
+     <table class='table table2' border='1'>
+        <tr><th>Emp_id:</th><th>EmployeeName:</th><th>complitionStatus:</th></tr>
+     {{#each data1}}
+       <tr>
+         <td>{{this.emp_id}}</td>
+         <td>{{this.name}}</td>
+     <td><a href="/taskcompPercentage?empid={{this.emp_id}}&name={{this.name}}" onClick="return confirm('do you really want to see?')">completionStatus</a></td>
+         </tr>
+     {{/each}}
+     </table>
+</body>

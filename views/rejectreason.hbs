@@ -1,0 +1,65 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+</style>
+<script>
+</script>
+</head>
+<body>
+{{mloggedin}}
+{{#if msg}}
+<div class="alert alert-success alert-dismissible">
+<a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+{{msg}}</div>{{/if}}
+<div class="container">
+
+  <div class="content">
+    <h2>You can give a reason for rejection here :</h2>
+    <form action="/sendmanagerreason" method="Post">
+      <div class="form-group">
+        <input type="hidden" class="form-control"  value="{{data.request_id}}" name="reqid" required>
+        <input type="hidden" class="form-control"  value="{{data.manager_id}}" name="mid" required>
+        <input type="hidden" class="form-control"  value="{{mloggedin}}" name="mlogid" required>
+        </div>
+        <div class="form-group">
+          <div class="row">
+          <div class="col-md-4 col-md-offset-0">
+        <textarea class="form-control" name="reason" rows="2" cols="50" required></textarea>
+         </div></div></div>
+        <button type="submit" class="btn btn-primary">send</button>
+</form>
+  </div>
+</div>
+</body>
+</html>

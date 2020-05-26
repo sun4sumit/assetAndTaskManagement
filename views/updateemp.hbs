@@ -1,0 +1,145 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+    width: 600px;
+  cursor: auto;
+}
+</style>
+<script>
+$(document).ready(function(){
+
+
+$('#mi').hide();
+var designation=$("#d").val();
+console.log(designation)
+console.log((designation == "Employee"))
+if(designation == "Employee"){
+  $('#mi').show();
+
+}else {
+  $('#mi').hide();
+}
+
+$('#d').change(function(){
+  var designation=$(this).val();
+  console.log(designation)
+  console.log((designation == "Employee"))
+  if(designation == "Employee"){
+    $('#mi').show();
+    // $(this).val();
+  }else {
+    $('#mi').hide();
+  }
+
+})})
+
+</script>
+</head>
+<body>
+{{login}}
+{{#if msg}}
+<div class="alert alert-success alert-dismissible">
+<a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+{{msg}}</div>{{/if}}
+
+<div class="container">
+
+  <div class="content">
+    <h2> {{#if msg}}
+    {{msg}}
+      {{else}}Enter the Information what do you want to update{{/if}}</h2>
+    <form action="/updateemp" method="Post">
+      <div class="form-row" >
+      <div class="form-group col-md-6">
+        <label for="text">First Name:</label>
+        <input type="text" class="form-control" id="fname" value="{{data.name}}" name="ename" required>
+        <input type="hidden" class="form-control" id="" value="{{data._id}}" name="objid" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">Last Name:</label>
+        <input type="text" class="form-control" id="lname" value="{{data.lastname}}" name="elname" required>
+      </div>
+    </div>
+    <div class="form-row" >
+      <div class="form-group col-md-6">
+        <label for="email">Email_id:</label>
+        <input type="text" class="form-control" id="elog" value="{{data.emailid}}" name="elogid" required>
+      </div>
+      <div id="msg"></div>
+      <div class="form-group col-md-6">
+        <label for="text">Password:</label>
+        <input type="password" class="form-control" id="pwd" value="{{data.epassword}}" name="epass" required>
+      </div>
+    </div>
+    <div class="form-row" >
+      <div class="form-group col-md-4">
+        <label for="text">Mobile no:</label>
+        <input type="text" class="form-control" id="mob" value="{{data.mobileno}}" name="emob" required>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="text">DateOfJoining:</label>
+      <input type=""  class="form-control" id="dat" value="{{data.dateofjoining}}" name="doj" required>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="text">Employee_id:</label>
+        <input type="text" class="form-control" id="ei" value="{{data.emp_id}}" name="eid" required>
+      </div>
+    </div>
+    <div>
+      <div class="form-group col-md-12">
+        <label class="txt" for="text">Designation:</label>
+        <select class="form-control" placeholder="dropdown"  id="d" name="dsg" required>
+           <option>{{data.designation}}</option>
+           <option>Employee</option>
+          <option>Manager</option>
+          <option>Support</option>
+</select></div>
+
+
+          <div id="mi" class="form-group col-md-12">
+            <label for="text">Manager_id:</label>
+            <input type="text" class="form-control"  id="m" value="{{data.manager_id}}" name="mid">
+          </div>
+
+
+
+        <button type="submit" class="btn btn-primary">update</button>
+
+
+
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

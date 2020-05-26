@@ -1,0 +1,77 @@
+{{mloggedin}}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.ratingfield{
+  color:#ffff;
+  background: #000000;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+</style>
+<script>
+</script>
+</head>
+<body>
+
+{{#if msg}}
+<div class="alert alert-success alert-dismissible">
+<a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+{{msg}}</div>{{/if}}
+
+<div class="container">
+
+  <div class="content">
+    <h2>You can give a rating and feedback here :</h2>
+    <form action="/close&rating" method="Post">
+      <div class="form-group">
+        <input type="hidden" class="form-control"  value="{{empid}}" name="empid" required>
+        <input type="hidden" class="form-control"  value="{{taskname}}" name="taskname" required>
+        <input type="hidden" class="form-control"  value="{{mid}}" name="mid" required>
+        </div>
+        <div class="form-group">
+          <div class="row">
+          <div class="col-md-4 col-md-offset-0">
+            <label for="text">Enter rating from 1(low) to 10(high):</label>
+         <input class="ratingfield" type="number" name="rating" min="1" max="10">1(low) to 10(high)
+         </div></div></div>
+         <div class="form-group">
+           <div class="row">
+           <div class="col-md-4 col-md-offset-0">
+          <label for="text">Enter Feedback:</label>
+          <textarea class="form-control" name="feedback" rows="2" cols="50" required></textarea>
+          </div></div></div>
+          <button type="submit" class="btn btn-primary">send</button>
+</form>
+  </div>
+</div>
+</body>
+</html>

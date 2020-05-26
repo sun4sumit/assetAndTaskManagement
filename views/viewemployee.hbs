@@ -1,0 +1,63 @@
+{{login}}
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+.table{
+  margin-left: -40px;
+  margin-top: -25px;
+
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+.alert{
+  position: absolute;
+  margin-top:-70px;
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+h1{
+  color: white;
+}
+</style>
+<body>
+  {{login}}
+    {{#if msg}}
+  <div class="alert alert-success alert-dismissible">
+    <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+    {{msg}}</div>{{/if}}
+<table class='table' border='1'>
+  <tr><th>name</th><th>lastname</th><th>emailid</th><th>password</th><th>emp_id</th><th>mobleno</th><th>designation</th><th>dateofjoining</th><th>manager_id</th><th>status</th><th>delete</th><th>modify</th></tr>
+{{#each data}}
+ <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.lastname}}</td>
+      <td>{{this.emailid}}</td>
+      <td>{{this.epassword}}</td>
+      <td>{{this.emp_id}}</td>
+      <td>{{this.mobileno}}</td>
+      <td>{{this.designation}}</td>
+      <td>{{this.dateofjoining}}</td>
+      <td>{{this.manager_id}}</td>
+      <td>{{this.status}}</td>
+      <td><a href="/deleteemp?_id={{this._id}}" onClick="return confirm('do you really want to delete?')">delete</a></td>
+      <td><a href="/upemp?id={{this._id}}" onClick="return confirm('do you really want to update?')">modify</a></td>
+
+ </tr>
+
+{{/each}}
+
+ </table>
+<!-- </div> -->
+</body>

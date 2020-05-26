@@ -1,0 +1,110 @@
+{{mloggedin}}
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+.table2{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+.table{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  /* position:absolute;top: 30px; */
+  cursor: auto;
+  /* width: 600px; */
+}
+
+h1{
+  color: white;
+}
+.tlink{color:white;cursor: pointer;
+  position:absolute;top:60px;
+  left:1100px;text-decoration: underline;font-size: 20px;
+  text-decoration-color: lightgreen;text-decoration-style: double
+}
+.arlink {color:white;cursor: pointer;
+text-decoration: underline;font-size: 20px;
+position:absolute;top:60px;left:800px;text-decoration-color: lightgreen;text-decoration-style: double;
+ }
+a:hover{color: lightgreen;}
+</style>
+</style>
+<script>
+$(document).ready(function(){
+$('.table2').hide()
+$('.tlink').click(function(){
+$(".table").hide();
+    $('.table2').show();
+})
+$('.arlink').click(function(){
+$('.table').show();
+$(".table2").hide();
+})
+var str=$(".alert").text();
+console.log((str.indexOf("app"))!=-1)
+if((str.indexOf("transfer"))!=-1){
+  $(".table").hide();
+  $('.table2').show();
+
+
+}
+})
+</script>
+  {{#if msg}}
+<div class="alert alert-success alert-dismissible">
+  <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+  {{msg}}</div>{{/if}}
+
+  <body>
+  <a class="tlink">PendingTransferRequests</a>
+<a class="arlink">PendingAssetRequests</a>
+<table class='table' border='1'>
+  <tr><th>Req_id</th><th>Emp_id</th><th>Asset_id</th><th>Assetname</th><th>manager_id</th><th>RequestDate</th><th>Approve</th><th>Reject</th></tr>
+{{#each data1}}
+ <tr>
+      <td>{{this.request_id}}</td>
+      <td>{{this.emp_id}}</td>
+      <td>{{this.asset_id}}</td>
+      <td>{{this.assetname}}</td>
+      <td>{{this.manager_id}}</td>
+      <td>{{this.reqdate}}</td>
+<td><a href="/approvebym?reqid={{this.request_id}}&mid={{this.manager_id}}" onClick="return confirm('do you really want to approve?')">approve</a></td>
+<td><a href="/rejectbym?reqid={{this.request_id}}&mid={{this.manager_id}}" onClick="return confirm('do you really want to do reject?')">reject</a1></td>
+  </tr>
+  {{/each}}
+
+ </table>
+ <table class='table table2' border='1'>
+   <tr><th>Req_id</th><th>Emp_id</th><th>Asset_id</th><th>Assetname</th><th>manager_id</th><th>TransferTo-</th><th>RequestDate</th><th>Approve</th><th>Reject</th></tr>
+{{#each data2}}
+  <tr>
+    <td>{{this.request_id}}</td>
+    <td>{{this.emp_id}}</td>
+    <td>{{this.asset_id}}</td>
+    <td>{{this.assetname}}</td>
+    <td>{{this.manager_id}}</td>
+    <td>{{this.transferto}}</td>
+    <td>{{this.reqdate}}</td>
+<td><a href="/approvebym?reqid={{this.request_id}}&mid={{this.manager_id}}&to={{this.transferto}}&assetid={{this.asset_id}}" onClick="return confirm('do you really want to approve?')">approve</a></td>
+<td><a href="/rejectbym?reqid={{this.request_id}}&mid={{this.manager_id}}&to={{this.transferto}}" onClick="return confirm('do you really want to do reject?')">reject</a1></td>
+    </tr>
+{{/each}}
+</table>
+</body>

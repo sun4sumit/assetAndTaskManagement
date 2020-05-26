@@ -1,0 +1,108 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+</style>
+<script>
+</script>
+</head>
+<body>
+{{login}}
+{{#if msg}}
+<div class="alert alert-success alert-dismissible">
+<a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+{{msg}}</div>{{/if}}
+<div class="container">
+
+  <div class="content">
+    <h2>Enter respective informations given below in the fields:</h2>
+    <form action="/addasset" method="Post">
+      <!-- <div class="form-row" >
+      <div class="form-group col-md-6">
+        <label for="text">First Name:</label>
+        <input type="text" class="form-control" id="fname" placeholder="enter name" name="ename" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="text">Last Name:</label>
+        <input type="text" class="form-control" id="lname" placeholder="enter last name" name="elname" required>
+      </div>
+    </div>
+    <div class="form-row" >
+      <div class="form-group col-md-6">
+        <label for="email">Email_id:</label>
+        <input type="text" class="form-control" id="elog" placeholder="Enter email" name="elogid" required>
+      </div>
+      <div id="msg"></div>
+      <div class="form-group col-md-6">
+        <label for="text">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="epass" required>
+      </div>
+    </div>-->
+    <div class="form-row" >
+
+      <div class="form-group col-md-6">
+        <label for="text">aid:</label>
+      <input type="text"  class="form-control" id="aidid" placeholder=" enter aid" name="aid" reqduired>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="text">quantity</label>
+        <input type="number" class="form-control" id="qtyid" placeholder=" enter quantity" name="qty" required>
+      </div>
+
+    </div>
+      <div class="form-group col-md-12">
+        <label class="txt" for="text">assetname:</label>
+        <select class="form-control" placeholder="dropdown"  id="aname" name="assetname" required>
+           <option>select</option>
+           <option>laptop</option>
+          <option>pandrive</option>
+          <option>projector</option>
+</select></div>
+
+          <!-- <div id="mi" class="form-group col-md-12">
+            <label for="text">Manager_id:</label>
+            <input type="text" class="form-control"  placeholder=" enter managerid" name="mid">
+          </div> -->
+
+
+        <button type="submit" class="btn btn-primary">Addasset</button>
+
+
+
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

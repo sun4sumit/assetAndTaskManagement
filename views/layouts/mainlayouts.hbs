@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Asset management</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<style>body {
+  background-image: url('https://businessfirstfamily.com/wp-content/uploads/2015/10/Asset-Management-name-plate.jpg');
+  background-size:cover;
+}</style>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Asset management</a>
+
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+
+      <ul class="nav navbar-nav">
+        {{#if login}}
+        <li ><a href="#">Home</a></li>
+        {{/if}}
+        {{#if slogin}}
+        <li ><a href="#">Home</a></li>
+        {{/if}}
+        {{#if clogin}}
+        <li ><a href="#">Home</a></li>
+        {{/if}}
+
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+              {{#if login}}
+                <li><a href="/creat">CreateEmployee</a></li>
+                <li><a href="/showemp">ViewEmployees</a></li>
+                <li><a href="/createasset">AddAssets</a></li>
+                <li><a href="/showasset">ViewAssets</a></li>
+                <li><a href="/deactemp">DeactivateEmployee</a></li>
+                <li><a href="/alogout"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+                {{else}}
+
+                {{#if mloggedin}}
+                <li><a href="/profile?logid={{mloggedin}}">Profile</a></li>
+                <li><a href="/createmreq">CreateRequest</a></li>
+                <li><a href="/showpending">PendingRequest</a></li>
+                <li><a href="/showmreq">MyRequest</a></li>
+                <li><a href="/showassets?logid={{mloggedin}}">MyAssets</a></li>
+                <li><a href="/showteam?logid={{mloggedin}}">MyEployees</a></li>
+                <li><a href="/task">Tasks</a></li>
+                <li><a href="/transfermasset">TransferAsset</a></li>
+                <li><a href="/email?logid={{mloggedin}}">E-mail</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+                  {{else}}
+                  {{#if eloggedin}}
+                  <li><a href="/profile?logid={{eloggedin}}">Profile</a></li>
+                  <li><a href="/createereq">CreateRequest</a></li>
+                  <li><a href="/transfereasset">TranferAsset</a></li>
+                  <li><a href="/showempreq">MyRequest</a></li>
+                  <li><a href="/showemptask">ViewTasks</a></li>
+                  <li><a href="/showassets?logid={{eloggedin}}">MyAssets</a></li>
+                  <li><a href="/showteam?logid={{eloggedin}}">TeamMembers</a></li>
+                  <li><a href="/email?logid={{eloggedin}}">E-mail</a></li>
+                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+                  {{else}}
+                  {{#if sloggedin}}
+                  <li><a href="/profile?logid={{sloggedin}}">Profile</a></li>
+                  <li><a href="/showsupportreq">ViewRequest</a></li>
+                  <li><a href="/showsassets">reports</a></li>
+                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+                  {{else}}
+<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">login<span class="caret"></span></a>
+
+<ul class="dropdown-menu">
+  <li><a href="/alog"><span class="glyphicon glyphicon-log-in"></span> Adminlogin</a></li>
+  <li><a href="/slog"><span class="glyphicon glyphicon-log-in"></span> SubAdminLogin</a></li>
+  <li><a href="/clog"><span class="glyphicon glyphicon-log-in"></span> user</a></li>
+
+  </ul>
+</li>
+{{/if}}
+{{/if}}
+{{/if}}
+{{/if}}
+
+      </ul>
+
+
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  {{{body}}}
+</div>
+
+</body>
+</html>

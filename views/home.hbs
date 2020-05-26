@@ -1,0 +1,60 @@
+<style>
+h2{color:#ffff}
+body {
+  /* background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg'); */
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+#i{
+  color:#ffff;
+  background: #000000;
+}
+.txt{
+  color: #ffff
+}
+.t{
+  background: #004d9900
+}
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0,0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 100px;
+}
+</style>
+<body>
+<div class='container'>
+  <div class='content'>
+  {{#if login}}
+  <h1>welcome Admin</h1>
+  <h3>Now you can see the Employees list and can add Employees </h3>
+  <h3>And you can see the Assets list and can creat assets</h3>
+{{/if}}
+{{#if mloggedin}}
+<h1>welcome to Manager home</h1>
+<h3>Now you can see the pending request and can approve and transfer assets products whatever you want</h3>
+{{/if}}
+{{#if eloggedin}}
+<h1>welcome to employee home</h1>
+<h3>Now you can raise the request for asset you want.
+and you can transfer your assets .</h3>
+{{/if}}
+{{#if sloggedin}}
+<h1>welcome to support home</h1>
+<h3>Now you can see the request raised by employees for assets.
+and can generate the report.</h3>
+{{/if}}
+
+
+</div>
+</div>
+</body>

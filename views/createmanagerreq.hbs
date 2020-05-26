@@ -1,0 +1,87 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+
+.container .content {
+  position: center;
+  top: 0;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+</style>
+
+<script>
+// $(document).ready(function(){
+//   $("h1").text();
+// var str=$("h3").text();
+// console.log((str.indexOf("sent"))!=-1)
+// if((str.indexOf("sent"))!=-1){
+//    $("h3").addClass("green")
+//  }
+//  $("h3").click(function(){
+//    $("h3").hide()
+//    $("p").hide()
+//  })
+//  })
+</script>
+</head>
+<body>
+{{mloggedin}}
+{{#if msg}}
+<div class="alert alert-success alert-dismissible">
+<a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+{{msg}}</div>{{/if}}
+<div class="container">
+
+
+  <div class="content">
+    <h2>Select asset what do you want to request: </h2>
+    <form action="/raisemanagerreq" method="Post">
+      <div class="form-group">
+        <div class="row">
+        <div class="col-md-4 col-md-offset-0">
+        <input type="hidden" class="form-control" id="midid" value="{{mloggedin}}" name="mlogid" required>
+        <label class="txt" for="text">Choose Asset:</label>
+        <select class="form-control" placeholder="dropdown"  id="assetidid" name="assetid" required>
+          <option disabled>select asset</option>
+          {{#each data}}
+          <option value="{{this.asset_id}}">{{this.assetname}}({{this.asset_id}})</option>
+          {{/each}}
+</select></div></div></div>
+
+
+
+        <button type="submit" class="btn btn-primary">RaiseRequest</button>
+
+
+
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

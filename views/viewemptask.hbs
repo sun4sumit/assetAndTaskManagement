@@ -1,0 +1,149 @@
+{{eloggedin}}
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+.table2{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+.table{
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+}
+h1{
+  color: white;
+}
+.green{
+  color: lightgreen;
+  text-decoration: underline;
+  text-underline-position: alphabetic;
+  text-decoration-style: double;
+  font-display: auto;
+}
+.red{
+  color: orange;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  cursor: auto;
+}
+ .dropdown-menu{
+   color: #ffff;
+background: rgba(0, 0, 0, 0.7);
+}
+.dropdown-menu li a{
+  color: hotpink;
+  text-decoration: underline;
+}
+
+.tlink{color:white;
+position:absolute;top:60px;left:800px;font-size: 20px;text-decoration: underline;
+text-decoration-color: lightgreen;text-decoration-style: double;cursor: pointer;
+ }
+ .complink{color:white;cursor: pointer;
+   position:absolute;top:60px;
+   left:1100px;text-decoration:underline;font-size: 20px;
+   text-decoration-color: lightgreen;text-decoration-style: double
+ }
+a:hover{color: lightgreen;}
+
+</style>
+<script>
+
+$(document).ready(function(){
+$('.table2').hide()
+$("p").text(function(){
+  var str=$(this).text()
+  if(str==0){
+  $(this).text("pending..")
+   $(this).css({"color":"orange"})
+  }
+  else if(str==1){
+  $(this).text("in_progress..")
+   $(this).css({"color":"hotpink"})
+  }
+  else if(str==2){
+  $(this).text("completed")
+   $(this).css({"color":"lightgreen","text-transform":"uppercase"})
+  }
+  else if(str==3){
+  $(this).text("unable-to-do")
+   $(this).css({"color":"red"})
+  }
+})
+$('.tlink').click(function(){
+  $('.table').show();
+$(".table2").hide();
+
+})
+$(".complink").click(function(){
+  $(".table").hide();
+  $('.table2').show();
+
+
+})
+
+
+})
+</script>
+<body>
+  {{#if msg}}
+<div class="alert alert-success alert-dismissible">
+  <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+  {{msg}}</div>{{/if}}
+
+<a class="tlink">TaskAssigned</a>
+<a class="complink">TaskCompleted&Ratings</a>
+<body>
+<table class='table' border='1'>
+  <tr><th>Emp_id:</th><th>TaskName:</th><th>Discription:</th><th>Manager_id:</th><th>Status:</th><th>UpdationDate:</th><th>DueDate:</th><th>Response</th></tr>
+{{#each data1}}
+<tr>
+  <td>{{this.emp_id}}</td>
+  <td>{{this.taskname}}</td>
+  <td>{{this.discription}}</td>
+  <td>{{this.manager_id}}</td>
+  <td><p>{{this.status}}</p></td>
+  <td>{{this.assign_date}}</td>
+  <td>{{this.deadline}}</td>
+<td><div class="dropdown">
+  <button class=" btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Respond<span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="/inprogress?empid={{this.emp_id}}&taskname={{this.taskname}}" onClick="return confirm('do you really want to respond?')">in-progress</a></li>
+  <li><a href="/completed?empid={{this.emp_id}}&taskname={{this.taskname}}" onClick="return confirm('do you really want to respond?')">completed</a></li>
+<li><a href="/unabletodo?empid={{this.emp_id}}&taskname={{this.taskname}}" onClick="return confirm('do you really want to respond?')">unable-to-do</a></li>
+</ul></div></td>
+  </tr>
+  {{/each}}
+
+ </table>
+ <table class='table table2' border='1'>
+   <th>TaskName:</th><th>Discription:</th><th>Status:</th><th>UpdationDate:</th><th>DueDate:</th><th>Final_status:</th><th>Final_Rating:</th><th>Feedback:</th></tr>
+{{#each data2}}
+<tr>
+  <td>{{this.taskname}}</td>
+  <td>{{this.discription}}</td>
+  <td><p>{{this.status}}</p></td>
+  <td>{{this.assign_date}}</td>
+  <td>{{this.deadline}}</td>
+  <td>{{this.final_status}}</td>
+  <td>{{this.final_rating}}</td>
+  <td>{{this.feedback}}</td>
+    </tr>
+{{/each}}
+</table>
+</body>

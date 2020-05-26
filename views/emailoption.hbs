@@ -1,0 +1,184 @@
+{{eloggedin}}{{mloggedin}}
+<style>
+h2{color:#ffff}
+/* body {
+  background-image: url('https://i.pinimg.com/originals/82/0c/98/820c981247cc8be38e2bc3c433fc77f4.jpg');
+} */
+
+body {
+  font-family: Arial;
+  font-size: 17px;
+}
+.table2{
+  position: relative;
+  right: -40px;
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+  right: 0;
+}
+.table{
+  position: relative;
+  right: -40px;
+  color:#ffff;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: auto;
+
+
+}
+.container .content {
+  /* position: center; */
+  position: relative;
+  right: -100px;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+.alert{
+  color:lightgreen;
+  background: #00000000;
+  background: rgba(0, 0, 0, 0.7);
+  width: 600px;
+  /* position:absolute;top: 30px; */
+  cursor: auto;
+  /* width: 600px; */
+}
+
+h1{
+  color: white;
+}
+.inboxlink{color:white;cursor: pointer;
+  position:absolute;top:100px;
+  left:10px;text-decoration: underline;font-size: 20px;
+  text-decoration-color: lightgreen;text-decoration-style: double
+}
+.composelink {color:white;cursor: pointer;
+text-decoration: underline;font-size: 20px;
+position:absolute;top:140px;left:10px;text-decoration-color: lightgreen;text-decoration-style: double;
+ }
+ .sentlink {color:#ffffffff;cursor: pointer;
+ text-decoration: underline;font-size: 20px;
+ position:absolute;top:180px;left:10px;text-decoration-color: lightgreen;text-decoration-style: double;
+  }
+a:hover{color: lightgreen;}
+</style>
+</style>
+<script>
+$(document).ready(function(){
+
+  $('.content').hide()
+$('.table2').hide()
+$("p").text(function(){
+  var str=$(this).text()
+  if(str==0){
+  $(this).text("pending")
+   $(this).css({"color":"orange"})
+  }
+  else if(str==1){
+  $(this).text("in-progress")
+   $(this).css({"color":"blue"})
+  }
+  else if(str==2){
+  $(this).text("completed")
+   $(this).css({"color":"green"})
+  }
+  else if(str==3){
+  $(this).text("unable-to-do")
+   $(this).css({"color":"blue"})
+  }
+})
+$('.inboxlink').click(function(){
+$(".table").show();
+    $('.table2').hide();
+    $('.content').hide()
+})
+$('.composelink').click(function(){
+$('.content').show();
+$(".table2").hide();
+$('.table').hide()
+})
+$('.sentlink').click(function(){
+   $('.table').hide()
+$('.table2').show();
+$(".content").hide();
+
+})
+var str=$(".alert").text();
+console.log((str.indexOf("assigned"))!=-1)
+if((str.indexOf("assigned"))!=-1){
+  $(".table").hide();
+  $('.content').show();
+  $(".table2").hide();
+}
+else if((str.indexOf("completion"))!=-1){
+  $(".table").hide();
+  $('.content').hide();
+  $(".table2").show();
+}
+ })
+</script>
+  {{#if msg}}
+<div class="alert alert-success alert-dismissible">
+  <a style="color:white; float:right;" href="#" data-dismiss="alert">&times;</a>
+  {{msg}}</div>{{/if}}
+
+  <body>
+  <a class="inboxlink">Inbox</a>
+<a class="composelink">ComposeMail</a>
+<a class="sentlink">Sentmail</a>
+<table class='table' border='1'>
+   <tr><th>From:</th><th>Subject:</th><th>Message:</th><th>Date:</th></tr>
+{{#each data1}}
+  <tr>
+    <td>{{this.sender_id}}</td>
+    <td>{{this.subject}}</td>
+    <td>{{this.message}}</td>
+    <td>{{this.date}}</td>
+      </tr>
+{{/each}}
+</table>
+<!-- <div class="container"> -->
+<div class="content">
+    <h2>ComposeMail:</h2>
+    <form action="/sendmail" method="Post">
+  <div class="form-group">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-0">
+  {{#if mloggedin}}<input type="hidden" class="form-control" id="" value="{{mloggedin}}" name="logid" required>{{/if}}
+  {{#if eloggedin}}<input type="hidden" class="form-control" id="" value="{{eloggedin}}" name="logid" required>{{/if}}
+  <label class="txt" for="text">To (enter employee id to send mail to):</label>
+  <input type="text" class="form-control" id="" placeholder="enter employee id" name="recieverid" required>
+  </div></div></div>
+  <div class="form-group">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-0">
+  <label for="text">Subject:</label>
+  <input type="text" class="form-control" id="" placeholder="enter subject" name="subject"required>
+  </div></div></div>
+  <div class="form-group">
+    <div class="row">
+    <div class="col-md-4 col-md-offset-0">
+      <label for="text">Message:</label>
+   <textarea class="form-control" name="message" rows="2" cols="50" required>write message here</textarea>
+   </div></div></div>
+<button type="submit" class="btn btn-primary">Send</button>
+     </form>
+     <!-- </div> -->
+     </div>
+
+     <table class='table table2' border='1'>
+       <tr><th>SentTo:</th><th>Subject:</th><th>Message:</th><th>Date:</th></tr>
+    {{#each data2}}
+      <tr>
+        <td>{{this.reciever_id}}</td>
+        <td>{{this.subject}}</td>
+        <td>{{this.message}}</td>
+        <td>{{this.date}}</td>
+          </tr>
+    {{/each}}
+     </table>
+</body>
